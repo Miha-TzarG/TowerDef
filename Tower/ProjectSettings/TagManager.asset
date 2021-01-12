@@ -8,6 +8,9 @@ TagManager:
   - txtlvl
   - Gold
   - PriceUpgradeTWR
+  - Shootpoint
+  - EnemyOne
+  - Bullet
   layers:
   - Default
   - TransparentFX
