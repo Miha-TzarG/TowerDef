@@ -34,17 +34,15 @@ public class Towerscript : MonoBehaviour
     {
         goUpdateTWR = GameObject.FindGameObjectWithTag("UpdateTower").GetComponent<Transform>(); //Находим кнопку UpdateTWR
 
-        goUpdateTWR.transform.position = new Vector2(this.transform.position.x + 1, this.transform.position.y); // Располагаем кнопку UpdateTWR рядом с башней
+        goUpdateTWR.transform.position = new Vector2(8, -0.65f); // Располагаем кнопку UpdateTWR рядом с башней
 
         txtpriceUpgrade = GameObject.FindGameObjectWithTag("PriceUpgradeTWR").GetComponent<TextMesh>(); // Находим Textmesh, на котором отображется цена апгрейда
-        txtpriceUpgrade.text = priceUpgrade.ToString(); //присваеиваем значение стоимости апгрейда
+        txtpriceUpgrade.text = "\n" + "Gold: " + priceUpgrade.ToString() + "\n" + "DMG: " + dmg.ToString(); //присваеиваем значение стоимости апгрейда
 
         mainscript.nametower = gameObject.name.ToString();
         mainscript.tw = this.GetComponent<Towerscript>();
 
-        Debug.Log("fdsf");
-        // nameObject = gameObject.name.ToString();
-        // Debug.Log(gameObject.name);
+     
     }
 
 
@@ -59,7 +57,8 @@ public class Towerscript : MonoBehaviour
             mainscript.txtGold.text = mainscript.Gold.ToString();
             priceUpgrade = priceUpgrade + 10;
             txtlvl.text = "LVL " + lvl.ToString();
-            txtpriceUpgrade.text = priceUpgrade.ToString();
+            txtpriceUpgrade.text = "\n" + "Gold: " + priceUpgrade.ToString() + "\n"+"DMG: " + dmg.ToString(); ;
+            goUpdateTWR.transform.position = new Vector2(0.8f, -8.28f);
         }
         else
         {

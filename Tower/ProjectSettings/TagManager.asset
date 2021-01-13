@@ -11,6 +11,8 @@ TagManager:
   - Shootpoint
   - EnemyOne
   - Bullet
+  - wayPoint
+  - pnt
   layers:
   - Default
   - TransparentFX

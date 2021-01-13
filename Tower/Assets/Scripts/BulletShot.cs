@@ -8,11 +8,16 @@ public class BulletShot : MonoBehaviour
 
     public float TimeToDisable;
     public Transform ParentPointShot;
+    public Shoot Parentshoot;
+    public Towerscript twrScript;
 
     public string tagname;
     public GameObject shootpoint;
 
-  //  public GameObject target;
+    public int dmgBullet;
+    public EnemyScript enemy;
+
+     
     void OnEnable()
     {
 
@@ -20,7 +25,9 @@ public class BulletShot : MonoBehaviour
 
         Transform parent = transform.parent;
         ParentPointShot = parent;
-      
+
+        twrScript = ParentPointShot.gameObject.GetComponent<Towerscript>();
+        dmgBullet = twrScript.dmg;
     }
     IEnumerator SetDisabled(float TimeToDisable)
     {
@@ -30,6 +37,9 @@ public class BulletShot : MonoBehaviour
         gameObject.SetActive(false);
         gameObject.transform.parent = ParentPointShot;
         gameObject.transform.rotation = ParentPointShot.transform.rotation;
+      
+
+
 
     }
     void Update()
@@ -43,23 +53,17 @@ public class BulletShot : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "EnemyOne")
-        {
-           // Debug.Log("bang");
-            // collision.gameObject.SetActive(false);
-            //collision.gameObject.TriggerHealth();
+        { 
+            enemy = collision.gameObject.GetComponent<EnemyScript>();
+             enemy.healthEnemy = enemy.healthEnemy - dmgBullet;
+            enemy.TriggerHealth();
+
             gameObject.SetActive(false);
             gameObject.transform.parent = ParentPointShot;
             gameObject.transform.rotation = ParentPointShot.transform.rotation;
 
         }
 
-        if (collision.tag == "Iron")
-        {
-            gameObject.SetActive(false);
-            gameObject.transform.parent = ParentPointShot;
-            gameObject.transform.rotation = ParentPointShot.transform.rotation;
-
-        }
     }
 
 

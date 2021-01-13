@@ -320,6 +320,8 @@ MonoBehaviour:
   ParentPointShot: {fileID: 0}
   tagname: 
   shootpoint: {fileID: 0}
+  dmgBullet: 2
+  enemy: {fileID: 0}
 --- !u!58 &2623369069887545717
 CircleCollider2D:
   m_ObjectHideFlags: 0
