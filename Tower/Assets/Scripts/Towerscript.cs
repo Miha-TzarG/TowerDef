@@ -7,42 +7,43 @@ public class Towerscript : MonoBehaviour
 {
 
     public int lvl = 1;
-    public int dmg;
-    public string nameObject;
-
+ 
     public MainS mainscript;
 
-    public Transform goUpdateTWR;
 
+    public Transform goUpdateTWR;
     public TextMesh txtlvl;
 
     public int priceUpgrade;
-    public TextMesh txtpriceUpgrade;
+  
+    public Shoot shootScript;
+
+
+   
 
     private void Start()
     {
-
-        txtlvl.text = "LVL " + lvl.ToString(); // Show Tower level
+       
+        txtlvl.text = "LVL " + lvl.ToString(); 
+       
     }
     public void OnMouseDown()
     {
-        // mainscript = GetComponent<MainS>();
-        //    Debug.Log("Down");
     }
 
     public void OnMouseUp()
     {
-        goUpdateTWR = GameObject.FindGameObjectWithTag("UpdateTower").GetComponent<Transform>(); //Находим кнопку UpdateTWR
-
-        goUpdateTWR.transform.position = new Vector2(8, -0.65f); // Располагаем кнопку UpdateTWR рядом с башней
-
-        txtpriceUpgrade = GameObject.FindGameObjectWithTag("PriceUpgradeTWR").GetComponent<TextMesh>(); // Находим Textmesh, на котором отображется цена апгрейда
-        txtpriceUpgrade.text = "\n" + "Gold: " + priceUpgrade.ToString() + "\n" + "DMG: " + dmg.ToString(); //присваеиваем значение стоимости апгрейда
-
+     
         mainscript.nametower = gameObject.name.ToString();
         mainscript.tw = this.GetComponent<Towerscript>();
 
-     
+        mainscript.UpdateMenu();
+
+        mainscript.txt.text = "\n" + "Gold: " + priceUpgrade.ToString() + "\n" + "DMG: " + (shootScript.Dmg + shootScript.UpgradeDmg).ToString();
+      
+
+
+
     }
 
 
@@ -52,13 +53,13 @@ public class Towerscript : MonoBehaviour
         if (mainscript.Gold - priceUpgrade >= 0)
         {
             lvl = lvl + 1;
-            dmg = dmg + 5;
+        
+            shootScript.Dmg = shootScript.Dmg + shootScript.UpgradeDmg;
             mainscript.Gold = mainscript.Gold - priceUpgrade;
             mainscript.txtGold.text = mainscript.Gold.ToString();
             priceUpgrade = priceUpgrade + 10;
             txtlvl.text = "LVL " + lvl.ToString();
-            txtpriceUpgrade.text = "\n" + "Gold: " + priceUpgrade.ToString() + "\n"+"DMG: " + dmg.ToString(); ;
-            goUpdateTWR.transform.position = new Vector2(0.8f, -8.28f);
+       
         }
         else
         {
