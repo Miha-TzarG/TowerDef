@@ -23,23 +23,29 @@ public class Createenemy : MonoBehaviour
 
     public int Colvosozdannih;
 
-   public int HealthEnemy;
+    public int HealthEnemy;
     public bool create;
-   // public int a;
-    // Start is called before the first frame update
+
     void Start()
     {
-     
-        CreateEnemyingame();
+        StartCoroutine(CEgame());
+ 
 
+    }
+    IEnumerator CEgame()
+    {
+        yield return new WaitForSeconds(0.5f);
+        CreateEnemyingame();
     }
 
     public void CreateEnemyingame()
     {
-      
-        HealthEnemy = HealthEnemy + mainscript.numWave;
-        pool_count = mainscript.numEnemyinWave;
+        
 
+           HealthEnemy = HealthEnemy + mainscript.numWave + 5;
+        pool_count = mainscript.HowmuchEnemy;
+        //создаем пул объектов
+        create = true;
         pool_size = new GameObject[pool_count];
 
         for (int i = 0; i < pool_count; i++)
@@ -51,35 +57,21 @@ public class Createenemy : MonoBehaviour
       
     }
 
-    IEnumerator obn()
-    {
-        yield return new WaitForSeconds(2f);
-        pool_count = mainscript.numEnemyinWave;
-        pool_size = new GameObject[pool_count];
-       
-        for (int i = 0; i < pool_count; i++)
-        {
-
-            pool_size[i] = Instantiate(prefab, transform.position, transform.rotation, pool_parent);
-           
-            pool_size[i].SetActive(false);
-        }
-    }
     
     void Update()
     {
-        if (create)
+        if (create) //создаются объекты на сцене и активируются
         {
             if (Time.time > nextTime)
             {
                 nextTime = Time.time + TimeSpawn;
                 GameObject obj = pool_parent.GetChild(pool_element_ID).gameObject;
                 obj.SetActive(true);
-                Colvosozdannih = Colvosozdannih + 1;
-
+                Colvosozdannih = Colvosozdannih + 1; //считаем сколько активировали объектов Enemy
+              /* */
                 if (obj.activeInHierarchy)
                 {
-                    obj.transform.position = new Vector3(point.transform.position.x, point.transform.position.y); // point.tranform.position.x;
+                    obj.transform.position = new Vector3(point.transform.position.x, point.transform.position.y);
                     obj.transform.parent = null;
                 }
 
@@ -87,6 +79,13 @@ public class Createenemy : MonoBehaviour
                 pool_element_ID++;
                 if (pool_element_ID > pool_parent.childCount - 1) pool_element_ID = 0;
             }
+
         }
+        if (Colvosozdannih == mainscript.HowmuchEnemy)
+        {
+            mainscript.Stop();
+          
+        }
+        
     }
 }

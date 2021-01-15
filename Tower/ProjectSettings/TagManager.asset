@@ -15,6 +15,7 @@ TagManager:
   - pnt
   - Castle
   - PanelUpdateTWR
+  - TWRUpdateCol
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Tower
   - 
   - 
   - 

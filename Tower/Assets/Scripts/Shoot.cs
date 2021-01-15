@@ -9,40 +9,34 @@ public class Shoot : MonoBehaviour
 
     public float TimeDmg= 0.2f;
     private float nextTime = 0.0f;
-
     public bool startShoot;
-
- 
-   public GameObject target;
+    public GameObject target;
     public EnemyScript enemyScript;
     public int Dmg;
     public int UpgradeDmg;
+    public Towerscript twsvript;
 
-
-    void Start()
-    {
-    }
 
     
     void Update()
     {
      
-        if (startShoot){
+        if (startShoot){ //если true то запускаем повреждение. (так же потом можно добавить, что бы запуск снарядов был)
            transform.LookAt(target.transform);
             if (Time.time > nextTime)
             {
                 nextTime = Time.time + TimeDmg;
-
                 enemyScript.healthEnemy = enemyScript.healthEnemy - Dmg;
                 enemyScript.txtHealth.text = enemyScript.healthEnemy.ToString();
                 enemyScript.TriggerHealth();
               
             }
+         
         }
    
 
     }
-    public string nm;
+   
 
      public void OnTriggerEnter2D(Collider2D collision)
         {
@@ -50,10 +44,11 @@ public class Shoot : MonoBehaviour
             {
             if (target == null)
             {
+            
                 target = collision.gameObject;
                 startShoot = true;
                 enemyScript = target.GetComponent<EnemyScript>();
-
+               
             }
          
 
@@ -65,10 +60,11 @@ public class Shoot : MonoBehaviour
     public void OnTriggerExit2D(Collider2D collision)
      {
         startShoot = false;
+       
 
-   
-          target = null;
+        target = null;
       
+
     }
 
 
@@ -79,6 +75,7 @@ public class Shoot : MonoBehaviour
           
             if (target == null)
             {
+              
                 target = collision.gameObject;
                 startShoot = true;
                 enemyScript = target.GetComponent<EnemyScript>();

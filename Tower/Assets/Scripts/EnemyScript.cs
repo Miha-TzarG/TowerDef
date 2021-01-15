@@ -35,10 +35,10 @@ public class EnemyScript : MonoBehaviour
         mainSscript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MainS>();
 
        
-     cra = GameObject.FindGameObjectWithTag("wayPoint").GetComponent<Createenemy>();
+        cra = GameObject.FindGameObjectWithTag("wayPoint").GetComponent<Createenemy>();
         healthEnemy = cra.HealthEnemy;
         txtHealth.text = healthEnemy.ToString();
-           waypoints = mainSscript.waypoints;
+        waypoints = mainSscript.waypoints;
     
 
        Transform parent = transform.parent;
@@ -61,15 +61,11 @@ public class EnemyScript : MonoBehaviour
 
     }
 
-    void Start()
-    {
-      
-    }
-
-    public bool t;
+  
+   
     void Update()
     {
-        if (mainSscript.healthCastle <= 0 || mainSscript.destroyEnemy <= 0)
+      if (mainSscript.healthCastle <= 0 )
 
         {
             gameObject.SetActive(false);
@@ -79,8 +75,9 @@ public class EnemyScript : MonoBehaviour
             gameObject.transform.parent = ParentPointShot;
             gameObject.transform.rotation = ParentPointShot.transform.rotation;
             mainSscript.CreateEnemyStop();
+     
         }
-        else
+       else
         {
         
             transform.position = Vector2.MoveTowards(transform.position, waypoints[wayPnt + 1].transform.position, speed * Time.deltaTime);
@@ -116,8 +113,9 @@ public class EnemyScript : MonoBehaviour
 
             gameObject.SetActive(false);
             mainSscript.Gold = mainSscript.Gold + goldAdd;
-            mainSscript.txtGold.text = mainSscript.Gold.ToString();
-          
+            mainSscript.txtGold.text = "Gold: " + mainSscript.Gold.ToString();
+
+
             healthEnemy = cra.HealthEnemy;
             txtHealth.text = healthEnemy.ToString();
             gameObject.transform.parent = ParentPointShot;
@@ -125,8 +123,8 @@ public class EnemyScript : MonoBehaviour
 
             mainSscript.destroyEnemy = mainSscript.destroyEnemy - 1;
             mainSscript.AlldestroyEnemy = mainSscript.AlldestroyEnemy + 1;
-   
 
+         
 
 
         }
@@ -159,16 +157,19 @@ public class EnemyScript : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
       {
           if (collision.tag == "Castle") {
+
             mainSscript.healthCastle = mainSscript.healthCastle - dmgToCastle;
-            mainSscript.txtHealth.text = "Health: " + mainSscript.txtHealth.ToString();
+            mainSscript.txtHealth.text = "Health: " + mainSscript.healthCastle.ToString();
+          
             gameObject.SetActive(false);
-            mainSscript.txtGold.text = mainSscript.Gold.ToString();
-            healthEnemy = 10;
+            mainSscript.txtGold.text = "Gold: " + mainSscript.Gold.ToString();
+            healthEnemy = cra.HealthEnemy; 
 
             gameObject.transform.parent = ParentPointShot;
             gameObject.transform.rotation = ParentPointShot.transform.rotation;
 
-            
+            mainSscript.destroyEnemy = mainSscript.destroyEnemy - 1;
+
         }
       }
 

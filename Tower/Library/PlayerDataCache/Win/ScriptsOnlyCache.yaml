@@ -1,12 +1,13 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Cam
     - Createenemy
     - EnemyScript
     - MainS
     - Shoot
     - Towerscript
-    - UpgradeTowers
+    - ray
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
@@ -34,6 +35,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Outline
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/PlayScene.unity:
@@ -51,6 +53,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 50
       Script: {instanceID: 0}
     - Class: 58
@@ -64,31 +68,35 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11266}
+      Script: {instanceID: 11268}
     - Class: 114
-      Script: {instanceID: 11354}
+      Script: {instanceID: 11358}
     - Class: 114
-      Script: {instanceID: 11556}
+      Script: {instanceID: 11560}
     - Class: 114
-      Script: {instanceID: 11610}
+      Script: {instanceID: 11614}
     - Class: 114
-      Script: {instanceID: 12276}
+      Script: {instanceID: 12280}
     - Class: 114
-      Script: {instanceID: 12684}
+      Script: {instanceID: 12688}
     - Class: 114
-      Script: {instanceID: 12982}
+      Script: {instanceID: 12986}
     - Class: 114
-      Script: {instanceID: 13244}
+      Script: {instanceID: 13354}
     - Class: 114
-      Script: {instanceID: 13352}
+      Script: {instanceID: 13518}
     - Class: 114
-      Script: {instanceID: 13516}
+      Script: {instanceID: 13694}
     - Class: 114
-      Script: {instanceID: 13692}
+      Script: {instanceID: 13754}
     - Class: 114
-      Script: {instanceID: 13752}
+      Script: {instanceID: 14120}
     - Class: 114
-      Script: {instanceID: 14364}
+      Script: {instanceID: 14266}
+    - Class: 114
+      Script: {instanceID: 14368}
+    - Class: 114
+      Script: {instanceID: 239976}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -134,7 +142,7 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 5045681a63d5d8490762c4f98780cd57
+      Hash: 496c27a808b733d01d58cc007e780088
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Towerscript
@@ -350,12 +358,6 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 975b51b2d21f989016cae60d620e7b93
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BulletShot
-  - hash:
-      serializedVersion: 2
       Hash: d4020bafcd3ccbb5601a6e6c8ac78be0
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -368,7 +370,7 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
-      Hash: 1a0791e5549e2b1f0fca29f413d3cfe7
+      Hash: 09df76b1a552f7990d456f15e493ff2c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainS
@@ -414,12 +416,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
-  - hash:
-      serializedVersion: 2
-      Hash: 81edf4566ac857b0455796bc95c27a91
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: UpgradeTowers
   - hash:
       serializedVersion: 2
       Hash: 71b711096c6c32621c1d4c02310898b7
@@ -470,7 +466,7 @@ ScriptsOnlyBuild:
     className: ActivationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: ab02ba734c2de56a65f89269a6d1898c
+      Hash: 7371615d35f6a0559dc0bf355a03e0d6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Shoot
@@ -500,7 +496,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: 2479d67ce8804718c6deafe62e54ebdd
+      Hash: e71bd7091bd7715bed0c3f4c935a86d5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyScript
@@ -534,6 +530,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_StyleSheet
+  - hash:
+      serializedVersion: 2
+      Hash: e8fa34ca06d79884491e9c8e8d6e996a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ray
   - hash:
       serializedVersion: 2
       Hash: 8cd1cbba27f3cb1717254f668e9e0d5a
@@ -630,6 +632,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Cam
   platform: 5
   scenePathNames:
   - Assets/Scenes/PlayScene.unity

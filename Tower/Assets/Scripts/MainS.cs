@@ -13,7 +13,7 @@ public class MainS : MonoBehaviour
     public Towerscript tw;
 
     public int Gold;
-    public TextMesh txtGold;
+    public Text txtGold;
     public GameObject[] waypoints;
 
     public int healthCastle;
@@ -23,6 +23,7 @@ public class MainS : MonoBehaviour
     public int numWave;
     public int numEnemyinWave;
     public int destroyEnemy;
+    public int HowmuchEnemy;
 
     public EnemyScript enemyscript;
 
@@ -37,15 +38,31 @@ public class MainS : MonoBehaviour
 
     public Text txt;
    
+  
     void Start()
     {
-        txtGold.text = Gold.ToString();
+      
+        Time.timeScale = 1;
+        txtGold.text = "Gold: "+ Gold.ToString();
         destroyEnemy = numEnemyinWave;
         txtNumWave.text = "Wave: " + numWave.ToString();
         txtHealth.text = "Health: " + healthCastle.ToString();
+        HowmuchEnemy = destroyEnemy;
+
+
         Readfile();
     }
 
+    private void Update()
+    {
+        if(destroyEnemy == 0)
+        {
+        
+            destroyEnemy = numEnemyinWave;
+            StartCoroutine(Zapusk());
+        }
+
+    }
     public void Readfile()
     {
         string[] textfile = File.ReadAllLines("Assets/Resources/time.txt");
@@ -56,29 +73,21 @@ public class MainS : MonoBehaviour
         
     }
 
-    void Update()
+    public void Stop()
     {
-     
-   
+       createenemyScript.Colvosozdannih = 0;
+      createenemyScript.create = false;
+      
     }
 
     public void CreateEnemyStop()
     {
-    
-       
-    
-        if (createenemyScript.Colvosozdannih >= numEnemyinWave)
-        {
-         createenemyScript.Colvosozdannih = 0;
-            createenemyScript.create = false;
-
-            StartCoroutine(Zapusk());
-        }
       
+    
         if (healthCastle <= 0)
         {
-            Gameoverpanel.SetActive(true);
-            txtAlldestroyEnemy.text = AlldestroyEnemy.ToString();
+            OpenMenu();
+            
             createenemyScript.create = false;
 
         }
@@ -87,6 +96,7 @@ public class MainS : MonoBehaviour
     IEnumerator Zapusk()
     {
         yield return new WaitForSeconds(TimenextWave);
+        createenemyScript.Colvosozdannih = 0;
         numWave = numWave + 1;
         createenemyScript.create = true;
         CreateEnemyStart();
@@ -94,17 +104,31 @@ public class MainS : MonoBehaviour
     public void CreateEnemyStart()
     {
       
-        createenemyScript.enabled = true;
+     
            
         destroyEnemy = numEnemyinWave + numWave * Random.Range(0, numEnemyinWave + 10);
-        healthCastle = 10;
+        HowmuchEnemy = destroyEnemy;
+      
        
         createenemyScript.CreateEnemyingame();
              
         txtNumWave.text = "Wave: " + numWave.ToString();
        
     }
+    public void OpenMenu()
+    {
+        Time.timeScale = 0;
+        Gameoverpanel.SetActive(true);
+        txtAlldestroyEnemy.text = AlldestroyEnemy.ToString();
+    }
 
+    public void ContiniuGame()
+    {
+        Time.timeScale = 1;
+        Gameoverpanel.SetActive(false);
+
+
+    }
     public void Restartgame()
     {
         SceneManager.LoadScene("PlayScene");
@@ -118,6 +142,7 @@ public class MainS : MonoBehaviour
     public void CloseUpdateMenu()
     {
         Updatemenu.SetActive(false);
+      
     }
 
     public void Upgardetwr()

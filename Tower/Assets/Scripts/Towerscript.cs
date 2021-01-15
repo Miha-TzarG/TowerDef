@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+[RequireComponent(typeof(BoxCollider2D))]
 public class Towerscript : MonoBehaviour
 {
 
@@ -18,34 +18,23 @@ public class Towerscript : MonoBehaviour
   
     public Shoot shootScript;
 
+    public BoxCollider2D cc;
+  
 
-   
+    public delegate void ButtonClick();
+ 
 
     private void Start()
     {
-       
-        txtlvl.text = "LVL " + lvl.ToString(); 
-       
-    }
-    public void OnMouseDown()
-    {
-    }
 
-    public void OnMouseUp()
-    {
-     
-        mainscript.nametower = gameObject.name.ToString();
-        mainscript.tw = this.GetComponent<Towerscript>();
+        mainscript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MainS>();
 
-        mainscript.UpdateMenu();
-
-        mainscript.txt.text = "\n" + "Gold: " + priceUpgrade.ToString() + "\n" + "DMG: " + (shootScript.Dmg + shootScript.UpgradeDmg).ToString();
+        txtlvl.text = "LVL " + lvl.ToString();
       
-
-
-
+     
     }
 
+      
 
     public void UpgradeTower()
     {
@@ -56,15 +45,12 @@ public class Towerscript : MonoBehaviour
         
             shootScript.Dmg = shootScript.Dmg + shootScript.UpgradeDmg;
             mainscript.Gold = mainscript.Gold - priceUpgrade;
-            mainscript.txtGold.text = mainscript.Gold.ToString();
+            mainscript.txtGold.text = "Gold: " + mainscript.Gold.ToString();
             priceUpgrade = priceUpgrade + 10;
             txtlvl.text = "LVL " + lvl.ToString();
        
         }
-        else
-        {
-
-        }
+     
     }
   
 
